@@ -1,24 +1,5 @@
-# README
+# Docker + Herokuで超簡単なアプリをデプロイ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+↓こんなやつ 名前と金額と取引先を入れると記録される
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+![スクリーンショット 2021-03-05 15 51 03](https://user-images.githubusercontent.com/69241625/110078336-f0197c80-7dca-11eb-9df4-3ebd7f6e9d3c.png)
