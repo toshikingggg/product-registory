@@ -1,0 +1,31 @@
+# key:value で書いていく
+version: '3'
+
+#ホスト側にdataの保管庫を作成→コンテナを消すと消えてしまったらやばいため
+#dockerがどっかからとってきてくれてる便利な場所
+volumes:
+  db-data:
+
+services:
+  web: #ネストして、任意の名前をつける
+    build: . #docker build . Dockerファイルのある場所でビルドする
+    ports: #runの -p 複数のポートも割り当てられる
+      - '3000:3000'
+    volumes: #runの　-v　マウントをする　ホスト:workdir
+      - '.:/product-register'
+    environment: #環境変数の指定 今回はrails側でパスを要求したため
+      - 'DATABASE_PASSWORD=postgres' 
+    tty: true # -t
+    stdin_open: true # -i
+    depends_on: #webのコンテナは指定したサービスができたらrunする→先にdb作れの命令
+      - db
+    links: #webからdbにアクセスできる
+      - db
+  
+  db:
+    image: postgres #ポスグレのイメージがあるのでそのままとってくる
+    volumes:
+      - 'db-data:/var/lib/postgresql/data' #ぽすぐれのdataの保存先をマウント
+    environment:
+      - 'POSTGRES_USER=postgres'
+      - 'POSTGRES_PASSWORD=postgres'
